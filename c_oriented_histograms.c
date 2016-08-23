@@ -1231,13 +1231,17 @@ static const char __pyx_k_sx[] = "sx";
 static const char __pyx_k_sy[] = "sy";
 static const char __pyx_k_ang[] = "ang";
 static const char __pyx_k_mag[] = "mag";
+static const char __pyx_k_ovx[] = "ovx";
+static const char __pyx_k_ovy[] = "ovy";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_to_x[] = "to_x";
-static const char __pyx_k_to_y[] = "to_y";
 static const char __pyx_k_idx_X[] = "idx_X";
 static const char __pyx_k_idx_Y[] = "idx_Y";
 static const char __pyx_k_range[] = "range";
+static const char __pyx_k_from_x[] = "from_x";
+static const char __pyx_k_from_y[] = "from_y";
+static const char __pyx_k_gap_cx[] = "gap_cx";
+static const char __pyx_k_gap_cy[] = "gap_cy";
 static const char __pyx_k_cur_bin[] = "cur_bin";
 static const char __pyx_k_nxt_bin[] = "nxt_bin";
 static const char __pyx_k_prv_bin[] = "prv_bin";
@@ -1279,6 +1283,10 @@ static PyObject *__pyx_n_s_cy;
 static PyObject *__pyx_n_s_dist_cur_center;
 static PyObject *__pyx_n_s_dist_nxt_center;
 static PyObject *__pyx_n_s_dist_prv_center;
+static PyObject *__pyx_n_s_from_x;
+static PyObject *__pyx_n_s_from_y;
+static PyObject *__pyx_n_s_gap_cx;
+static PyObject *__pyx_n_s_gap_cy;
 static PyObject *__pyx_kp_s_home_berthin_Documents_git_repo;
 static PyObject *__pyx_n_s_idx_X;
 static PyObject *__pyx_n_s_idx_Y;
@@ -1291,17 +1299,17 @@ static PyObject *__pyx_kp_u_ndarray_is_not_C_contiguous;
 static PyObject *__pyx_kp_u_ndarray_is_not_Fortran_contiguou;
 static PyObject *__pyx_n_s_nxt_bin;
 static PyObject *__pyx_n_s_orientation_histogram;
+static PyObject *__pyx_n_s_ovx;
+static PyObject *__pyx_n_s_ovy;
 static PyObject *__pyx_n_s_prv_bin;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_sx;
 static PyObject *__pyx_n_s_sy;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_n_s_to_x;
-static PyObject *__pyx_n_s_to_y;
 static PyObject *__pyx_kp_u_unknown_dtype_code_in_numpy_pxd;
 static PyObject *__pyx_n_s_x;
 static PyObject *__pyx_n_s_y;
-static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_mag, PyArrayObject *__pyx_v_ang, PyObject *__pyx_v_cx, PyObject *__pyx_v_cy, CYTHON_UNUSED PyObject *__pyx_v_sx, CYTHON_UNUSED PyObject *__pyx_v_sy, PyObject *__pyx_v_n_cellsx, PyObject *__pyx_v_n_cellsy, PyObject *__pyx_v_n_orientations, PyArrayObject *__pyx_v_orientation_histogram); /* proto */
+static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_mag, PyArrayObject *__pyx_v_ang, PyObject *__pyx_v_cx, PyObject *__pyx_v_cy, CYTHON_UNUSED PyObject *__pyx_v_sx, CYTHON_UNUSED PyObject *__pyx_v_sy, PyObject *__pyx_v_n_cellsx, PyObject *__pyx_v_n_cellsy, PyObject *__pyx_v_n_orientations, PyObject *__pyx_v_ovx, PyObject *__pyx_v_ovy, PyArrayObject *__pyx_v_orientation_histogram); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static PyObject *__pyx_float_180_;
@@ -1320,7 +1328,7 @@ static PyObject *__pyx_codeobj__8;
  * from libc.math cimport floor
  * def calculate_histograms (np.ndarray[np.double_t, ndim=2] mag,             # <<<<<<<<<<<<<<
  *                           np.ndarray[np.double_t, ndim=2] ang,
- *                           cx, cy, sx, sy, n_cellsx, n_cellsy, n_orientations,
+ *                           cx, cy, sx, sy, n_cellsx, n_cellsy, n_orientations, ovx, ovy,
  */
 
 /* Python wrapper */
@@ -1336,17 +1344,21 @@ static PyObject *__pyx_pw_21c_oriented_histograms_1calculate_histograms(PyObject
   PyObject *__pyx_v_n_cellsx = 0;
   PyObject *__pyx_v_n_cellsy = 0;
   PyObject *__pyx_v_n_orientations = 0;
+  PyObject *__pyx_v_ovx = 0;
+  PyObject *__pyx_v_ovy = 0;
   PyArrayObject *__pyx_v_orientation_histogram = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("calculate_histograms (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_mag,&__pyx_n_s_ang,&__pyx_n_s_cx,&__pyx_n_s_cy,&__pyx_n_s_sx,&__pyx_n_s_sy,&__pyx_n_s_n_cellsx,&__pyx_n_s_n_cellsy,&__pyx_n_s_n_orientations,&__pyx_n_s_orientation_histogram,0};
-    PyObject* values[10] = {0,0,0,0,0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_mag,&__pyx_n_s_ang,&__pyx_n_s_cx,&__pyx_n_s_cy,&__pyx_n_s_sx,&__pyx_n_s_sy,&__pyx_n_s_n_cellsx,&__pyx_n_s_n_cellsy,&__pyx_n_s_n_orientations,&__pyx_n_s_ovx,&__pyx_n_s_ovy,&__pyx_n_s_orientation_histogram,0};
+    PyObject* values[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case 12: values[11] = PyTuple_GET_ITEM(__pyx_args, 11);
+        case 11: values[10] = PyTuple_GET_ITEM(__pyx_args, 10);
         case 10: values[9] = PyTuple_GET_ITEM(__pyx_args, 9);
         case  9: values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
         case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
@@ -1368,53 +1380,63 @@ static PyObject *__pyx_pw_21c_oriented_histograms_1calculate_histograms(PyObject
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ang)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 10, 10, 1); __PYX_ERR(0, 3, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 1); __PYX_ERR(0, 3, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_cx)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 10, 10, 2); __PYX_ERR(0, 3, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 2); __PYX_ERR(0, 3, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_cy)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 10, 10, 3); __PYX_ERR(0, 3, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 3); __PYX_ERR(0, 3, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_sx)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 10, 10, 4); __PYX_ERR(0, 3, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 4); __PYX_ERR(0, 3, __pyx_L3_error)
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_sy)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 10, 10, 5); __PYX_ERR(0, 3, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 5); __PYX_ERR(0, 3, __pyx_L3_error)
         }
         case  6:
         if (likely((values[6] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_cellsx)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 10, 10, 6); __PYX_ERR(0, 3, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 6); __PYX_ERR(0, 3, __pyx_L3_error)
         }
         case  7:
         if (likely((values[7] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_cellsy)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 10, 10, 7); __PYX_ERR(0, 3, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 7); __PYX_ERR(0, 3, __pyx_L3_error)
         }
         case  8:
         if (likely((values[8] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_orientations)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 10, 10, 8); __PYX_ERR(0, 3, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 8); __PYX_ERR(0, 3, __pyx_L3_error)
         }
         case  9:
-        if (likely((values[9] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_orientation_histogram)) != 0)) kw_args--;
+        if (likely((values[9] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ovx)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 10, 10, 9); __PYX_ERR(0, 3, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 9); __PYX_ERR(0, 3, __pyx_L3_error)
+        }
+        case 10:
+        if (likely((values[10] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ovy)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 10); __PYX_ERR(0, 3, __pyx_L3_error)
+        }
+        case 11:
+        if (likely((values[11] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_orientation_histogram)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, 11); __PYX_ERR(0, 3, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "calculate_histograms") < 0)) __PYX_ERR(0, 3, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 10) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 12) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -1427,6 +1449,8 @@ static PyObject *__pyx_pw_21c_oriented_histograms_1calculate_histograms(PyObject
       values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
       values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
       values[9] = PyTuple_GET_ITEM(__pyx_args, 9);
+      values[10] = PyTuple_GET_ITEM(__pyx_args, 10);
+      values[11] = PyTuple_GET_ITEM(__pyx_args, 11);
     }
     __pyx_v_mag = ((PyArrayObject *)values[0]);
     __pyx_v_ang = ((PyArrayObject *)values[1]);
@@ -1437,11 +1461,13 @@ static PyObject *__pyx_pw_21c_oriented_histograms_1calculate_histograms(PyObject
     __pyx_v_n_cellsx = values[6];
     __pyx_v_n_cellsy = values[7];
     __pyx_v_n_orientations = values[8];
-    __pyx_v_orientation_histogram = ((PyArrayObject *)values[9]);
+    __pyx_v_ovx = values[9];
+    __pyx_v_ovy = values[10];
+    __pyx_v_orientation_histogram = ((PyArrayObject *)values[11]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 10, 10, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 3, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("calculate_histograms", 1, 12, 12, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 3, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("c_oriented_histograms.calculate_histograms", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1450,7 +1476,7 @@ static PyObject *__pyx_pw_21c_oriented_histograms_1calculate_histograms(PyObject
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_mag), __pyx_ptype_5numpy_ndarray, 1, "mag", 0))) __PYX_ERR(0, 3, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ang), __pyx_ptype_5numpy_ndarray, 1, "ang", 0))) __PYX_ERR(0, 4, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_orientation_histogram), __pyx_ptype_5numpy_ndarray, 1, "orientation_histogram", 0))) __PYX_ERR(0, 6, __pyx_L1_error)
-  __pyx_r = __pyx_pf_21c_oriented_histograms_calculate_histograms(__pyx_self, __pyx_v_mag, __pyx_v_ang, __pyx_v_cx, __pyx_v_cy, __pyx_v_sx, __pyx_v_sy, __pyx_v_n_cellsx, __pyx_v_n_cellsy, __pyx_v_n_orientations, __pyx_v_orientation_histogram);
+  __pyx_r = __pyx_pf_21c_oriented_histograms_calculate_histograms(__pyx_self, __pyx_v_mag, __pyx_v_ang, __pyx_v_cx, __pyx_v_cy, __pyx_v_sx, __pyx_v_sy, __pyx_v_n_cellsx, __pyx_v_n_cellsy, __pyx_v_n_orientations, __pyx_v_ovx, __pyx_v_ovy, __pyx_v_orientation_histogram);
 
   /* function exit code */
   goto __pyx_L0;
@@ -1461,7 +1487,7 @@ static PyObject *__pyx_pw_21c_oriented_histograms_1calculate_histograms(PyObject
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_mag, PyArrayObject *__pyx_v_ang, PyObject *__pyx_v_cx, PyObject *__pyx_v_cy, CYTHON_UNUSED PyObject *__pyx_v_sx, CYTHON_UNUSED PyObject *__pyx_v_sy, PyObject *__pyx_v_n_cellsx, PyObject *__pyx_v_n_cellsy, PyObject *__pyx_v_n_orientations, PyArrayObject *__pyx_v_orientation_histogram) {
+static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_mag, PyArrayObject *__pyx_v_ang, PyObject *__pyx_v_cx, PyObject *__pyx_v_cy, CYTHON_UNUSED PyObject *__pyx_v_sx, CYTHON_UNUSED PyObject *__pyx_v_sy, PyObject *__pyx_v_n_cellsx, PyObject *__pyx_v_n_cellsy, PyObject *__pyx_v_n_orientations, PyObject *__pyx_v_ovx, PyObject *__pyx_v_ovy, PyArrayObject *__pyx_v_orientation_histogram) {
   double __pyx_v_cell_ang;
   double __pyx_v_cell_mag;
   double __pyx_v_dist_cur_center;
@@ -1475,8 +1501,10 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
   Py_ssize_t __pyx_v_idx_Y;
   Py_ssize_t __pyx_v_x;
   Py_ssize_t __pyx_v_y;
-  Py_ssize_t __pyx_v_to_x;
-  Py_ssize_t __pyx_v_to_y;
+  Py_ssize_t __pyx_v_from_x;
+  Py_ssize_t __pyx_v_from_y;
+  int __pyx_v_gap_cx;
+  int __pyx_v_gap_cy;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_ang;
   __Pyx_Buffer __pyx_pybuffer_ang;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_mag;
@@ -1487,31 +1515,30 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   double __pyx_t_2;
-  Py_ssize_t __pyx_t_3;
+  int __pyx_t_3;
   Py_ssize_t __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  Py_ssize_t __pyx_t_6;
+  Py_ssize_t __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
   Py_ssize_t __pyx_t_7;
   Py_ssize_t __pyx_t_8;
   Py_ssize_t __pyx_t_9;
   Py_ssize_t __pyx_t_10;
   Py_ssize_t __pyx_t_11;
-  int __pyx_t_12;
-  Py_ssize_t __pyx_t_13;
+  Py_ssize_t __pyx_t_12;
+  int __pyx_t_13;
   Py_ssize_t __pyx_t_14;
-  int __pyx_t_15;
+  Py_ssize_t __pyx_t_15;
   Py_ssize_t __pyx_t_16;
   Py_ssize_t __pyx_t_17;
   Py_ssize_t __pyx_t_18;
   Py_ssize_t __pyx_t_19;
-  Py_ssize_t __pyx_t_20;
+  int __pyx_t_20;
   Py_ssize_t __pyx_t_21;
   Py_ssize_t __pyx_t_22;
   Py_ssize_t __pyx_t_23;
   Py_ssize_t __pyx_t_24;
   Py_ssize_t __pyx_t_25;
   Py_ssize_t __pyx_t_26;
-  Py_ssize_t __pyx_t_27;
   __Pyx_RefNannySetupContext("calculate_histograms", 0);
   __pyx_pybuffer_mag.pybuffer.buf = NULL;
   __pyx_pybuffer_mag.refcount = 0;
@@ -1546,7 +1573,7 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
  *     cdef double dist_cur_center, dist_prv_center, dist_nxt_center
  *     cdef double bin_width = 180. / n_orientations             # <<<<<<<<<<<<<<
  *     cdef int cur_bin, prv_bin, nxt_bin
- *     cdef Py_ssize_t idx_X, idx_Y, x, y, to_x, to_y
+ *     cdef Py_ssize_t idx_X, idx_Y, x, y, from_x, from_y
  */
   __pyx_t_1 = __Pyx_PyFloat_DivideCObj(__pyx_float_180_, __pyx_v_n_orientations, 180., 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 10, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -1557,138 +1584,148 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
   /* "c_oriented_histograms.pyx":15
  *     #cdef int idx_X, idx_Y, x, y, to_x, to_y
  *     # Calculating the histograms for each cell
+ *     cdef int gap_cx = cx - ovx;             # <<<<<<<<<<<<<<
+ *     cdef int gap_cy = cy - ovy;
+ *     for idx_X from 0 <= idx_X < n_cellsx:
+ */
+  __pyx_t_1 = PyNumber_Subtract(__pyx_v_cx, __pyx_v_ovx); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_gap_cx = __pyx_t_3;
+
+  /* "c_oriented_histograms.pyx":16
+ *     # Calculating the histograms for each cell
+ *     cdef int gap_cx = cx - ovx;
+ *     cdef int gap_cy = cy - ovy;             # <<<<<<<<<<<<<<
+ *     for idx_X from 0 <= idx_X < n_cellsx:
+ *         for idx_Y from 0 <= idx_Y < n_cellsy:
+ */
+  __pyx_t_1 = PyNumber_Subtract(__pyx_v_cy, __pyx_v_ovy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_gap_cy = __pyx_t_3;
+
+  /* "c_oriented_histograms.pyx":17
+ *     cdef int gap_cx = cx - ovx;
+ *     cdef int gap_cy = cy - ovy;
  *     for idx_X from 0 <= idx_X < n_cellsx:             # <<<<<<<<<<<<<<
  *         for idx_Y from 0 <= idx_Y < n_cellsy:
- *             to_x = (idx_X + 1) * cx
+ *             from_x = idx_X * gap_cx
  */
-  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_v_n_cellsx); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 15, __pyx_L1_error)
-  for (__pyx_v_idx_X = 0; __pyx_v_idx_X < __pyx_t_3; __pyx_v_idx_X++) {
+  __pyx_t_4 = __Pyx_PyIndex_AsSsize_t(__pyx_v_n_cellsx); if (unlikely((__pyx_t_4 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L1_error)
+  for (__pyx_v_idx_X = 0; __pyx_v_idx_X < __pyx_t_4; __pyx_v_idx_X++) {
 
-    /* "c_oriented_histograms.pyx":16
- *     # Calculating the histograms for each cell
+    /* "c_oriented_histograms.pyx":18
+ *     cdef int gap_cy = cy - ovy;
  *     for idx_X from 0 <= idx_X < n_cellsx:
  *         for idx_Y from 0 <= idx_Y < n_cellsy:             # <<<<<<<<<<<<<<
- *             to_x = (idx_X + 1) * cx
- *             to_y = (idx_Y + 1) * cy
+ *             from_x = idx_X * gap_cx
+ *             from_y = idx_Y * gap_cy
  */
-    __pyx_t_4 = __Pyx_PyIndex_AsSsize_t(__pyx_v_n_cellsy); if (unlikely((__pyx_t_4 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 16, __pyx_L1_error)
-    for (__pyx_v_idx_Y = 0; __pyx_v_idx_Y < __pyx_t_4; __pyx_v_idx_Y++) {
-
-      /* "c_oriented_histograms.pyx":17
- *     for idx_X from 0 <= idx_X < n_cellsx:
- *         for idx_Y from 0 <= idx_Y < n_cellsy:
- *             to_x = (idx_X + 1) * cx             # <<<<<<<<<<<<<<
- *             to_y = (idx_Y + 1) * cy
- *             for x from (idx_X * cx) <= x < to_x:
- */
-      __pyx_t_1 = PyInt_FromSsize_t((__pyx_v_idx_X + 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_v_cx); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_6 = __Pyx_PyIndex_AsSsize_t(__pyx_t_5); if (unlikely((__pyx_t_6 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_v_to_x = __pyx_t_6;
-
-      /* "c_oriented_histograms.pyx":18
- *         for idx_Y from 0 <= idx_Y < n_cellsy:
- *             to_x = (idx_X + 1) * cx
- *             to_y = (idx_Y + 1) * cy             # <<<<<<<<<<<<<<
- *             for x from (idx_X * cx) <= x < to_x:
- *                 for y from (idx_Y * cy) <= y < to_y:
- */
-      __pyx_t_5 = PyInt_FromSsize_t((__pyx_v_idx_Y + 1)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_1 = PyNumber_Multiply(__pyx_t_5, __pyx_v_cy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_6 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_6 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 18, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_v_to_y = __pyx_t_6;
+    __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_v_n_cellsy); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 18, __pyx_L1_error)
+    for (__pyx_v_idx_Y = 0; __pyx_v_idx_Y < __pyx_t_5; __pyx_v_idx_Y++) {
 
       /* "c_oriented_histograms.pyx":19
- *             to_x = (idx_X + 1) * cx
- *             to_y = (idx_Y + 1) * cy
- *             for x from (idx_X * cx) <= x < to_x:             # <<<<<<<<<<<<<<
- *                 for y from (idx_Y * cy) <= y < to_y:
+ *     for idx_X from 0 <= idx_X < n_cellsx:
+ *         for idx_Y from 0 <= idx_Y < n_cellsy:
+ *             from_x = idx_X * gap_cx             # <<<<<<<<<<<<<<
+ *             from_y = idx_Y * gap_cy
+ *             for x from from_x <= x < (from_x + cx):
+ */
+      __pyx_v_from_x = (__pyx_v_idx_X * __pyx_v_gap_cx);
+
+      /* "c_oriented_histograms.pyx":20
+ *         for idx_Y from 0 <= idx_Y < n_cellsy:
+ *             from_x = idx_X * gap_cx
+ *             from_y = idx_Y * gap_cy             # <<<<<<<<<<<<<<
+ *             for x from from_x <= x < (from_x + cx):
+ *                 for y from from_y <= y < (from_y + cy):
+ */
+      __pyx_v_from_y = (__pyx_v_idx_Y * __pyx_v_gap_cy);
+
+      /* "c_oriented_histograms.pyx":21
+ *             from_x = idx_X * gap_cx
+ *             from_y = idx_Y * gap_cy
+ *             for x from from_x <= x < (from_x + cx):             # <<<<<<<<<<<<<<
+ *                 for y from from_y <= y < (from_y + cy):
  *                     cell_ang = ang[y, x]
  */
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_idx_X); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_from_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_v_cx); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_6 = PyNumber_Add(__pyx_t_1, __pyx_v_cx); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 21, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_6 = __Pyx_PyIndex_AsSsize_t(__pyx_t_5); if (unlikely((__pyx_t_6 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 19, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_7 = __pyx_v_to_x;
-      for (__pyx_v_x = __pyx_t_6; __pyx_v_x < __pyx_t_7; __pyx_v_x++) {
+      __pyx_t_7 = __Pyx_PyIndex_AsSsize_t(__pyx_t_6); if (unlikely((__pyx_t_7 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      for (__pyx_v_x = __pyx_v_from_x; __pyx_v_x < __pyx_t_7; __pyx_v_x++) {
 
-        /* "c_oriented_histograms.pyx":20
- *             to_y = (idx_Y + 1) * cy
- *             for x from (idx_X * cx) <= x < to_x:
- *                 for y from (idx_Y * cy) <= y < to_y:             # <<<<<<<<<<<<<<
+        /* "c_oriented_histograms.pyx":22
+ *             from_y = idx_Y * gap_cy
+ *             for x from from_x <= x < (from_x + cx):
+ *                 for y from from_y <= y < (from_y + cy):             # <<<<<<<<<<<<<<
  *                     cell_ang = ang[y, x]
  *                     cell_mag = mag[y, x]
  */
-        __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_idx_Y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 20, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_1 = PyNumber_Multiply(__pyx_t_5, __pyx_v_cy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
+        __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_from_y); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 22, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_6);
+        __pyx_t_1 = PyNumber_Add(__pyx_t_6, __pyx_v_cy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_8 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_8 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 20, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+        __pyx_t_8 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_8 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_9 = __pyx_v_to_y;
-        for (__pyx_v_y = __pyx_t_8; __pyx_v_y < __pyx_t_9; __pyx_v_y++) {
+        for (__pyx_v_y = __pyx_v_from_y; __pyx_v_y < __pyx_t_8; __pyx_v_y++) {
 
-          /* "c_oriented_histograms.pyx":21
- *             for x from (idx_X * cx) <= x < to_x:
- *                 for y from (idx_Y * cy) <= y < to_y:
+          /* "c_oriented_histograms.pyx":23
+ *             for x from from_x <= x < (from_x + cx):
+ *                 for y from from_y <= y < (from_y + cy):
  *                     cell_ang = ang[y, x]             # <<<<<<<<<<<<<<
  *                     cell_mag = mag[y, x]
  *                     cur_bin = int(floor(cell_ang / bin_width))
  */
-          __pyx_t_10 = __pyx_v_y;
-          __pyx_t_11 = __pyx_v_x;
-          __pyx_t_12 = -1;
+          __pyx_t_9 = __pyx_v_y;
+          __pyx_t_10 = __pyx_v_x;
+          __pyx_t_3 = -1;
+          if (__pyx_t_9 < 0) {
+            __pyx_t_9 += __pyx_pybuffernd_ang.diminfo[0].shape;
+            if (unlikely(__pyx_t_9 < 0)) __pyx_t_3 = 0;
+          } else if (unlikely(__pyx_t_9 >= __pyx_pybuffernd_ang.diminfo[0].shape)) __pyx_t_3 = 0;
           if (__pyx_t_10 < 0) {
-            __pyx_t_10 += __pyx_pybuffernd_ang.diminfo[0].shape;
-            if (unlikely(__pyx_t_10 < 0)) __pyx_t_12 = 0;
-          } else if (unlikely(__pyx_t_10 >= __pyx_pybuffernd_ang.diminfo[0].shape)) __pyx_t_12 = 0;
-          if (__pyx_t_11 < 0) {
-            __pyx_t_11 += __pyx_pybuffernd_ang.diminfo[1].shape;
-            if (unlikely(__pyx_t_11 < 0)) __pyx_t_12 = 1;
-          } else if (unlikely(__pyx_t_11 >= __pyx_pybuffernd_ang.diminfo[1].shape)) __pyx_t_12 = 1;
-          if (unlikely(__pyx_t_12 != -1)) {
-            __Pyx_RaiseBufferIndexError(__pyx_t_12);
-            __PYX_ERR(0, 21, __pyx_L1_error)
+            __pyx_t_10 += __pyx_pybuffernd_ang.diminfo[1].shape;
+            if (unlikely(__pyx_t_10 < 0)) __pyx_t_3 = 1;
+          } else if (unlikely(__pyx_t_10 >= __pyx_pybuffernd_ang.diminfo[1].shape)) __pyx_t_3 = 1;
+          if (unlikely(__pyx_t_3 != -1)) {
+            __Pyx_RaiseBufferIndexError(__pyx_t_3);
+            __PYX_ERR(0, 23, __pyx_L1_error)
           }
-          __pyx_v_cell_ang = (*__Pyx_BufPtrStrided2d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_ang.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_ang.diminfo[0].strides, __pyx_t_11, __pyx_pybuffernd_ang.diminfo[1].strides));
+          __pyx_v_cell_ang = (*__Pyx_BufPtrStrided2d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_ang.rcbuffer->pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_ang.diminfo[0].strides, __pyx_t_10, __pyx_pybuffernd_ang.diminfo[1].strides));
 
-          /* "c_oriented_histograms.pyx":22
- *                 for y from (idx_Y * cy) <= y < to_y:
+          /* "c_oriented_histograms.pyx":24
+ *                 for y from from_y <= y < (from_y + cy):
  *                     cell_ang = ang[y, x]
  *                     cell_mag = mag[y, x]             # <<<<<<<<<<<<<<
  *                     cur_bin = int(floor(cell_ang / bin_width))
  *                     # Check when ang is 180
  */
-          __pyx_t_13 = __pyx_v_y;
-          __pyx_t_14 = __pyx_v_x;
-          __pyx_t_12 = -1;
-          if (__pyx_t_13 < 0) {
-            __pyx_t_13 += __pyx_pybuffernd_mag.diminfo[0].shape;
-            if (unlikely(__pyx_t_13 < 0)) __pyx_t_12 = 0;
-          } else if (unlikely(__pyx_t_13 >= __pyx_pybuffernd_mag.diminfo[0].shape)) __pyx_t_12 = 0;
-          if (__pyx_t_14 < 0) {
-            __pyx_t_14 += __pyx_pybuffernd_mag.diminfo[1].shape;
-            if (unlikely(__pyx_t_14 < 0)) __pyx_t_12 = 1;
-          } else if (unlikely(__pyx_t_14 >= __pyx_pybuffernd_mag.diminfo[1].shape)) __pyx_t_12 = 1;
-          if (unlikely(__pyx_t_12 != -1)) {
-            __Pyx_RaiseBufferIndexError(__pyx_t_12);
-            __PYX_ERR(0, 22, __pyx_L1_error)
+          __pyx_t_11 = __pyx_v_y;
+          __pyx_t_12 = __pyx_v_x;
+          __pyx_t_3 = -1;
+          if (__pyx_t_11 < 0) {
+            __pyx_t_11 += __pyx_pybuffernd_mag.diminfo[0].shape;
+            if (unlikely(__pyx_t_11 < 0)) __pyx_t_3 = 0;
+          } else if (unlikely(__pyx_t_11 >= __pyx_pybuffernd_mag.diminfo[0].shape)) __pyx_t_3 = 0;
+          if (__pyx_t_12 < 0) {
+            __pyx_t_12 += __pyx_pybuffernd_mag.diminfo[1].shape;
+            if (unlikely(__pyx_t_12 < 0)) __pyx_t_3 = 1;
+          } else if (unlikely(__pyx_t_12 >= __pyx_pybuffernd_mag.diminfo[1].shape)) __pyx_t_3 = 1;
+          if (unlikely(__pyx_t_3 != -1)) {
+            __Pyx_RaiseBufferIndexError(__pyx_t_3);
+            __PYX_ERR(0, 24, __pyx_L1_error)
           }
-          __pyx_v_cell_mag = (*__Pyx_BufPtrStrided2d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_mag.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_mag.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_mag.diminfo[1].strides));
+          __pyx_v_cell_mag = (*__Pyx_BufPtrStrided2d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_mag.rcbuffer->pybuffer.buf, __pyx_t_11, __pyx_pybuffernd_mag.diminfo[0].strides, __pyx_t_12, __pyx_pybuffernd_mag.diminfo[1].strides));
 
-          /* "c_oriented_histograms.pyx":23
+          /* "c_oriented_histograms.pyx":25
  *                     cell_ang = ang[y, x]
  *                     cell_mag = mag[y, x]
  *                     cur_bin = int(floor(cell_ang / bin_width))             # <<<<<<<<<<<<<<
@@ -1697,63 +1734,63 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
  */
           if (unlikely(__pyx_v_bin_width == 0)) {
             PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-            __PYX_ERR(0, 23, __pyx_L1_error)
+            __PYX_ERR(0, 25, __pyx_L1_error)
           }
           __pyx_v_cur_bin = ((int)floor((__pyx_v_cell_ang / __pyx_v_bin_width)));
 
-          /* "c_oriented_histograms.pyx":25
+          /* "c_oriented_histograms.pyx":27
  *                     cur_bin = int(floor(cell_ang / bin_width))
  *                     # Check when ang is 180
  *                     if cur_bin == n_orientations:             # <<<<<<<<<<<<<<
  *                         cur_bin -= 1
- *                     dist_cur_center = cell_ang - (cur_bin * bin_width + bin_width * 0.5)
+ *                     #assert(0 <= cur_bin and cur_bin <= n_orientations)
  */
-          __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_cur_bin); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_cur_bin); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_5 = PyObject_RichCompare(__pyx_t_1, __pyx_v_n_orientations, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 25, __pyx_L1_error)
+          __pyx_t_6 = PyObject_RichCompare(__pyx_t_1, __pyx_v_n_orientations, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 27, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 25, __pyx_L1_error)
-          __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-          if (__pyx_t_15) {
+          __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 27, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+          if (__pyx_t_13) {
 
-            /* "c_oriented_histograms.pyx":26
+            /* "c_oriented_histograms.pyx":28
  *                     # Check when ang is 180
  *                     if cur_bin == n_orientations:
  *                         cur_bin -= 1             # <<<<<<<<<<<<<<
+ *                     #assert(0 <= cur_bin and cur_bin <= n_orientations)
  *                     dist_cur_center = cell_ang - (cur_bin * bin_width + bin_width * 0.5)
- *                     if 0 < dist_cur_center:
  */
             __pyx_v_cur_bin = (__pyx_v_cur_bin - 1);
 
-            /* "c_oriented_histograms.pyx":25
+            /* "c_oriented_histograms.pyx":27
  *                     cur_bin = int(floor(cell_ang / bin_width))
  *                     # Check when ang is 180
  *                     if cur_bin == n_orientations:             # <<<<<<<<<<<<<<
  *                         cur_bin -= 1
- *                     dist_cur_center = cell_ang - (cur_bin * bin_width + bin_width * 0.5)
+ *                     #assert(0 <= cur_bin and cur_bin <= n_orientations)
  */
           }
 
-          /* "c_oriented_histograms.pyx":27
- *                     if cur_bin == n_orientations:
+          /* "c_oriented_histograms.pyx":30
  *                         cur_bin -= 1
+ *                     #assert(0 <= cur_bin and cur_bin <= n_orientations)
  *                     dist_cur_center = cell_ang - (cur_bin * bin_width + bin_width * 0.5)             # <<<<<<<<<<<<<<
  *                     if 0 < dist_cur_center:
  *                         # share with next bin
  */
           __pyx_v_dist_cur_center = (__pyx_v_cell_ang - ((__pyx_v_cur_bin * __pyx_v_bin_width) + (__pyx_v_bin_width * 0.5)));
 
-          /* "c_oriented_histograms.pyx":28
- *                         cur_bin -= 1
+          /* "c_oriented_histograms.pyx":31
+ *                     #assert(0 <= cur_bin and cur_bin <= n_orientations)
  *                     dist_cur_center = cell_ang - (cur_bin * bin_width + bin_width * 0.5)
  *                     if 0 < dist_cur_center:             # <<<<<<<<<<<<<<
  *                         # share with next bin
  *                         nxt_bin = cur_bin + 1
  */
-          __pyx_t_15 = ((0.0 < __pyx_v_dist_cur_center) != 0);
-          if (__pyx_t_15) {
+          __pyx_t_13 = ((0.0 < __pyx_v_dist_cur_center) != 0);
+          if (__pyx_t_13) {
 
-            /* "c_oriented_histograms.pyx":30
+            /* "c_oriented_histograms.pyx":33
  *                     if 0 < dist_cur_center:
  *                         # share with next bin
  *                         nxt_bin = cur_bin + 1             # <<<<<<<<<<<<<<
@@ -1762,7 +1799,7 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
  */
             __pyx_v_nxt_bin = (__pyx_v_cur_bin + 1);
 
-            /* "c_oriented_histograms.pyx":31
+            /* "c_oriented_histograms.pyx":34
  *                         # share with next bin
  *                         nxt_bin = cur_bin + 1
  *                         dist_nxt_center = (nxt_bin * bin_width + bin_width * 0.5) - cell_ang             # <<<<<<<<<<<<<<
@@ -1771,42 +1808,42 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
  */
             __pyx_v_dist_nxt_center = (((__pyx_v_nxt_bin * __pyx_v_bin_width) + (__pyx_v_bin_width * 0.5)) - __pyx_v_cell_ang);
 
-            /* "c_oriented_histograms.pyx":32
+            /* "c_oriented_histograms.pyx":35
  *                         nxt_bin = cur_bin + 1
  *                         dist_nxt_center = (nxt_bin * bin_width + bin_width * 0.5) - cell_ang
  *                         if nxt_bin == n_orientations:             # <<<<<<<<<<<<<<
  *                             nxt_bin = 0
- *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_nxt_center * 1.0 / bin_width) * cell_mag
+ *                         #continue
  */
-            __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_nxt_bin); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 32, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_5);
-            __pyx_t_1 = PyObject_RichCompare(__pyx_t_5, __pyx_v_n_orientations, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
-            __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-            __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 32, __pyx_L1_error)
+            __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_nxt_bin); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 35, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_6);
+            __pyx_t_1 = PyObject_RichCompare(__pyx_t_6, __pyx_v_n_orientations, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+            __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 35, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-            if (__pyx_t_15) {
+            if (__pyx_t_13) {
 
-              /* "c_oriented_histograms.pyx":33
+              /* "c_oriented_histograms.pyx":36
  *                         dist_nxt_center = (nxt_bin * bin_width + bin_width * 0.5) - cell_ang
  *                         if nxt_bin == n_orientations:
  *                             nxt_bin = 0             # <<<<<<<<<<<<<<
+ *                         #continue
  *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_nxt_center * 1.0 / bin_width) * cell_mag
- *                         orientation_histogram[idx_Y, idx_X, nxt_bin] += (dist_cur_center * 1.0 / bin_width) * cell_mag
  */
               __pyx_v_nxt_bin = 0;
 
-              /* "c_oriented_histograms.pyx":32
+              /* "c_oriented_histograms.pyx":35
  *                         nxt_bin = cur_bin + 1
  *                         dist_nxt_center = (nxt_bin * bin_width + bin_width * 0.5) - cell_ang
  *                         if nxt_bin == n_orientations:             # <<<<<<<<<<<<<<
  *                             nxt_bin = 0
- *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_nxt_center * 1.0 / bin_width) * cell_mag
+ *                         #continue
  */
             }
 
-            /* "c_oriented_histograms.pyx":34
- *                         if nxt_bin == n_orientations:
+            /* "c_oriented_histograms.pyx":38
  *                             nxt_bin = 0
+ *                         #continue
  *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_nxt_center * 1.0 / bin_width) * cell_mag             # <<<<<<<<<<<<<<
  *                         orientation_histogram[idx_Y, idx_X, nxt_bin] += (dist_cur_center * 1.0 / bin_width) * cell_mag
  *                     else:
@@ -1814,32 +1851,32 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
             __pyx_t_2 = (__pyx_v_dist_nxt_center * 1.0);
             if (unlikely(__pyx_v_bin_width == 0)) {
               PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-              __PYX_ERR(0, 34, __pyx_L1_error)
+              __PYX_ERR(0, 38, __pyx_L1_error)
             }
-            __pyx_t_16 = __pyx_v_idx_Y;
-            __pyx_t_17 = __pyx_v_idx_X;
-            __pyx_t_18 = __pyx_v_cur_bin;
-            __pyx_t_12 = -1;
+            __pyx_t_14 = __pyx_v_idx_Y;
+            __pyx_t_15 = __pyx_v_idx_X;
+            __pyx_t_16 = __pyx_v_cur_bin;
+            __pyx_t_3 = -1;
+            if (__pyx_t_14 < 0) {
+              __pyx_t_14 += __pyx_pybuffernd_orientation_histogram.diminfo[0].shape;
+              if (unlikely(__pyx_t_14 < 0)) __pyx_t_3 = 0;
+            } else if (unlikely(__pyx_t_14 >= __pyx_pybuffernd_orientation_histogram.diminfo[0].shape)) __pyx_t_3 = 0;
+            if (__pyx_t_15 < 0) {
+              __pyx_t_15 += __pyx_pybuffernd_orientation_histogram.diminfo[1].shape;
+              if (unlikely(__pyx_t_15 < 0)) __pyx_t_3 = 1;
+            } else if (unlikely(__pyx_t_15 >= __pyx_pybuffernd_orientation_histogram.diminfo[1].shape)) __pyx_t_3 = 1;
             if (__pyx_t_16 < 0) {
-              __pyx_t_16 += __pyx_pybuffernd_orientation_histogram.diminfo[0].shape;
-              if (unlikely(__pyx_t_16 < 0)) __pyx_t_12 = 0;
-            } else if (unlikely(__pyx_t_16 >= __pyx_pybuffernd_orientation_histogram.diminfo[0].shape)) __pyx_t_12 = 0;
-            if (__pyx_t_17 < 0) {
-              __pyx_t_17 += __pyx_pybuffernd_orientation_histogram.diminfo[1].shape;
-              if (unlikely(__pyx_t_17 < 0)) __pyx_t_12 = 1;
-            } else if (unlikely(__pyx_t_17 >= __pyx_pybuffernd_orientation_histogram.diminfo[1].shape)) __pyx_t_12 = 1;
-            if (__pyx_t_18 < 0) {
-              __pyx_t_18 += __pyx_pybuffernd_orientation_histogram.diminfo[2].shape;
-              if (unlikely(__pyx_t_18 < 0)) __pyx_t_12 = 2;
-            } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_orientation_histogram.diminfo[2].shape)) __pyx_t_12 = 2;
-            if (unlikely(__pyx_t_12 != -1)) {
-              __Pyx_RaiseBufferIndexError(__pyx_t_12);
-              __PYX_ERR(0, 34, __pyx_L1_error)
+              __pyx_t_16 += __pyx_pybuffernd_orientation_histogram.diminfo[2].shape;
+              if (unlikely(__pyx_t_16 < 0)) __pyx_t_3 = 2;
+            } else if (unlikely(__pyx_t_16 >= __pyx_pybuffernd_orientation_histogram.diminfo[2].shape)) __pyx_t_3 = 2;
+            if (unlikely(__pyx_t_3 != -1)) {
+              __Pyx_RaiseBufferIndexError(__pyx_t_3);
+              __PYX_ERR(0, 38, __pyx_L1_error)
             }
-            *__Pyx_BufPtrStrided3d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_orientation_histogram.rcbuffer->pybuffer.buf, __pyx_t_16, __pyx_pybuffernd_orientation_histogram.diminfo[0].strides, __pyx_t_17, __pyx_pybuffernd_orientation_histogram.diminfo[1].strides, __pyx_t_18, __pyx_pybuffernd_orientation_histogram.diminfo[2].strides) += ((__pyx_t_2 / __pyx_v_bin_width) * __pyx_v_cell_mag);
+            *__Pyx_BufPtrStrided3d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_orientation_histogram.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_orientation_histogram.diminfo[0].strides, __pyx_t_15, __pyx_pybuffernd_orientation_histogram.diminfo[1].strides, __pyx_t_16, __pyx_pybuffernd_orientation_histogram.diminfo[2].strides) += ((__pyx_t_2 / __pyx_v_bin_width) * __pyx_v_cell_mag);
 
-            /* "c_oriented_histograms.pyx":35
- *                             nxt_bin = 0
+            /* "c_oriented_histograms.pyx":39
+ *                         #continue
  *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_nxt_center * 1.0 / bin_width) * cell_mag
  *                         orientation_histogram[idx_Y, idx_X, nxt_bin] += (dist_cur_center * 1.0 / bin_width) * cell_mag             # <<<<<<<<<<<<<<
  *                     else:
@@ -1848,32 +1885,32 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
             __pyx_t_2 = (__pyx_v_dist_cur_center * 1.0);
             if (unlikely(__pyx_v_bin_width == 0)) {
               PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-              __PYX_ERR(0, 35, __pyx_L1_error)
+              __PYX_ERR(0, 39, __pyx_L1_error)
             }
-            __pyx_t_19 = __pyx_v_idx_Y;
-            __pyx_t_20 = __pyx_v_idx_X;
-            __pyx_t_21 = __pyx_v_nxt_bin;
-            __pyx_t_12 = -1;
+            __pyx_t_17 = __pyx_v_idx_Y;
+            __pyx_t_18 = __pyx_v_idx_X;
+            __pyx_t_19 = __pyx_v_nxt_bin;
+            __pyx_t_3 = -1;
+            if (__pyx_t_17 < 0) {
+              __pyx_t_17 += __pyx_pybuffernd_orientation_histogram.diminfo[0].shape;
+              if (unlikely(__pyx_t_17 < 0)) __pyx_t_3 = 0;
+            } else if (unlikely(__pyx_t_17 >= __pyx_pybuffernd_orientation_histogram.diminfo[0].shape)) __pyx_t_3 = 0;
+            if (__pyx_t_18 < 0) {
+              __pyx_t_18 += __pyx_pybuffernd_orientation_histogram.diminfo[1].shape;
+              if (unlikely(__pyx_t_18 < 0)) __pyx_t_3 = 1;
+            } else if (unlikely(__pyx_t_18 >= __pyx_pybuffernd_orientation_histogram.diminfo[1].shape)) __pyx_t_3 = 1;
             if (__pyx_t_19 < 0) {
-              __pyx_t_19 += __pyx_pybuffernd_orientation_histogram.diminfo[0].shape;
-              if (unlikely(__pyx_t_19 < 0)) __pyx_t_12 = 0;
-            } else if (unlikely(__pyx_t_19 >= __pyx_pybuffernd_orientation_histogram.diminfo[0].shape)) __pyx_t_12 = 0;
-            if (__pyx_t_20 < 0) {
-              __pyx_t_20 += __pyx_pybuffernd_orientation_histogram.diminfo[1].shape;
-              if (unlikely(__pyx_t_20 < 0)) __pyx_t_12 = 1;
-            } else if (unlikely(__pyx_t_20 >= __pyx_pybuffernd_orientation_histogram.diminfo[1].shape)) __pyx_t_12 = 1;
-            if (__pyx_t_21 < 0) {
-              __pyx_t_21 += __pyx_pybuffernd_orientation_histogram.diminfo[2].shape;
-              if (unlikely(__pyx_t_21 < 0)) __pyx_t_12 = 2;
-            } else if (unlikely(__pyx_t_21 >= __pyx_pybuffernd_orientation_histogram.diminfo[2].shape)) __pyx_t_12 = 2;
-            if (unlikely(__pyx_t_12 != -1)) {
-              __Pyx_RaiseBufferIndexError(__pyx_t_12);
-              __PYX_ERR(0, 35, __pyx_L1_error)
+              __pyx_t_19 += __pyx_pybuffernd_orientation_histogram.diminfo[2].shape;
+              if (unlikely(__pyx_t_19 < 0)) __pyx_t_3 = 2;
+            } else if (unlikely(__pyx_t_19 >= __pyx_pybuffernd_orientation_histogram.diminfo[2].shape)) __pyx_t_3 = 2;
+            if (unlikely(__pyx_t_3 != -1)) {
+              __Pyx_RaiseBufferIndexError(__pyx_t_3);
+              __PYX_ERR(0, 39, __pyx_L1_error)
             }
-            *__Pyx_BufPtrStrided3d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_orientation_histogram.rcbuffer->pybuffer.buf, __pyx_t_19, __pyx_pybuffernd_orientation_histogram.diminfo[0].strides, __pyx_t_20, __pyx_pybuffernd_orientation_histogram.diminfo[1].strides, __pyx_t_21, __pyx_pybuffernd_orientation_histogram.diminfo[2].strides) += ((__pyx_t_2 / __pyx_v_bin_width) * __pyx_v_cell_mag);
+            *__Pyx_BufPtrStrided3d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_orientation_histogram.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_orientation_histogram.diminfo[0].strides, __pyx_t_18, __pyx_pybuffernd_orientation_histogram.diminfo[1].strides, __pyx_t_19, __pyx_pybuffernd_orientation_histogram.diminfo[2].strides) += ((__pyx_t_2 / __pyx_v_bin_width) * __pyx_v_cell_mag);
 
-            /* "c_oriented_histograms.pyx":28
- *                         cur_bin -= 1
+            /* "c_oriented_histograms.pyx":31
+ *                     #assert(0 <= cur_bin and cur_bin <= n_orientations)
  *                     dist_cur_center = cell_ang - (cur_bin * bin_width + bin_width * 0.5)
  *                     if 0 < dist_cur_center:             # <<<<<<<<<<<<<<
  *                         # share with next bin
@@ -1882,121 +1919,181 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
             goto __pyx_L12;
           }
 
-          /* "c_oriented_histograms.pyx":38
+          /* "c_oriented_histograms.pyx":42
  *                     else:
  *                         # share with prev bin
  *                         prv_bin = cur_bin - 1             # <<<<<<<<<<<<<<
  *                         dist_prv_center = cell_ang - (prv_bin * bin_width + bin_width * 0.5)
- *                         if prv_bin == -1:
+ *                         #continue
  */
           /*else*/ {
             __pyx_v_prv_bin = (__pyx_v_cur_bin - 1);
 
-            /* "c_oriented_histograms.pyx":39
+            /* "c_oriented_histograms.pyx":43
  *                         # share with prev bin
  *                         prv_bin = cur_bin - 1
  *                         dist_prv_center = cell_ang - (prv_bin * bin_width + bin_width * 0.5)             # <<<<<<<<<<<<<<
+ *                         #continue
  *                         if prv_bin == -1:
- *                             prv_bin = n_orientations - 1
  */
             __pyx_v_dist_prv_center = (__pyx_v_cell_ang - ((__pyx_v_prv_bin * __pyx_v_bin_width) + (__pyx_v_bin_width * 0.5)));
 
-            /* "c_oriented_histograms.pyx":40
- *                         prv_bin = cur_bin - 1
+            /* "c_oriented_histograms.pyx":45
  *                         dist_prv_center = cell_ang - (prv_bin * bin_width + bin_width * 0.5)
+ *                         #continue
  *                         if prv_bin == -1:             # <<<<<<<<<<<<<<
  *                             prv_bin = n_orientations - 1
- *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_prv_center * 1.0 / bin_width) * cell_mag
+ *                         assert(0 <= cur_bin and cur_bin < n_orientations)
  */
-            __pyx_t_15 = ((__pyx_v_prv_bin == -1L) != 0);
-            if (__pyx_t_15) {
+            __pyx_t_13 = ((__pyx_v_prv_bin == -1L) != 0);
+            if (__pyx_t_13) {
 
-              /* "c_oriented_histograms.pyx":41
- *                         dist_prv_center = cell_ang - (prv_bin * bin_width + bin_width * 0.5)
+              /* "c_oriented_histograms.pyx":46
+ *                         #continue
  *                         if prv_bin == -1:
  *                             prv_bin = n_orientations - 1             # <<<<<<<<<<<<<<
- *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_prv_center * 1.0 / bin_width) * cell_mag
- *                         orientation_histogram[idx_Y, idx_X, prv_bin] += (-dist_cur_center * 1.0 / bin_width) * cell_mag
+ *                         assert(0 <= cur_bin and cur_bin < n_orientations)
+ *                         assert(0 <= prv_bin and prv_bin < n_orientations)
  */
-              __pyx_t_1 = __Pyx_PyInt_SubtractObjC(__pyx_v_n_orientations, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+              __pyx_t_1 = __Pyx_PyInt_SubtractObjC(__pyx_v_n_orientations, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_1);
-              __pyx_t_12 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L1_error)
+              __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-              __pyx_v_prv_bin = __pyx_t_12;
+              __pyx_v_prv_bin = __pyx_t_3;
 
-              /* "c_oriented_histograms.pyx":40
- *                         prv_bin = cur_bin - 1
+              /* "c_oriented_histograms.pyx":45
  *                         dist_prv_center = cell_ang - (prv_bin * bin_width + bin_width * 0.5)
+ *                         #continue
  *                         if prv_bin == -1:             # <<<<<<<<<<<<<<
  *                             prv_bin = n_orientations - 1
- *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_prv_center * 1.0 / bin_width) * cell_mag
+ *                         assert(0 <= cur_bin and cur_bin < n_orientations)
  */
             }
 
-            /* "c_oriented_histograms.pyx":42
+            /* "c_oriented_histograms.pyx":47
  *                         if prv_bin == -1:
  *                             prv_bin = n_orientations - 1
+ *                         assert(0 <= cur_bin and cur_bin < n_orientations)             # <<<<<<<<<<<<<<
+ *                         assert(0 <= prv_bin and prv_bin < n_orientations)
+ *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_prv_center * 1.0 / bin_width) * cell_mag
+ */
+            #ifndef CYTHON_WITHOUT_ASSERTIONS
+            if (unlikely(!Py_OptimizeFlag)) {
+              __pyx_t_20 = ((0 <= __pyx_v_cur_bin) != 0);
+              if (__pyx_t_20) {
+              } else {
+                __pyx_t_13 = __pyx_t_20;
+                goto __pyx_L15_bool_binop_done;
+              }
+              __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_cur_bin); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_1);
+              __pyx_t_6 = PyObject_RichCompare(__pyx_t_1, __pyx_v_n_orientations, Py_LT); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 47, __pyx_L1_error)
+              __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+              __pyx_t_20 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_20 < 0)) __PYX_ERR(0, 47, __pyx_L1_error)
+              __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+              __pyx_t_13 = __pyx_t_20;
+              __pyx_L15_bool_binop_done:;
+              if (unlikely(!__pyx_t_13)) {
+                PyErr_SetNone(PyExc_AssertionError);
+                __PYX_ERR(0, 47, __pyx_L1_error)
+              }
+            }
+            #endif
+
+            /* "c_oriented_histograms.pyx":48
+ *                             prv_bin = n_orientations - 1
+ *                         assert(0 <= cur_bin and cur_bin < n_orientations)
+ *                         assert(0 <= prv_bin and prv_bin < n_orientations)             # <<<<<<<<<<<<<<
+ *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_prv_center * 1.0 / bin_width) * cell_mag
+ *                         orientation_histogram[idx_Y, idx_X, prv_bin] += (-dist_cur_center * 1.0 / bin_width) * cell_mag
+ */
+            #ifndef CYTHON_WITHOUT_ASSERTIONS
+            if (unlikely(!Py_OptimizeFlag)) {
+              __pyx_t_20 = ((0 <= __pyx_v_prv_bin) != 0);
+              if (__pyx_t_20) {
+              } else {
+                __pyx_t_13 = __pyx_t_20;
+                goto __pyx_L17_bool_binop_done;
+              }
+              __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_prv_bin); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 48, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_6);
+              __pyx_t_1 = PyObject_RichCompare(__pyx_t_6, __pyx_v_n_orientations, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+              __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+              __pyx_t_20 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_20 < 0)) __PYX_ERR(0, 48, __pyx_L1_error)
+              __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+              __pyx_t_13 = __pyx_t_20;
+              __pyx_L17_bool_binop_done:;
+              if (unlikely(!__pyx_t_13)) {
+                PyErr_SetNone(PyExc_AssertionError);
+                __PYX_ERR(0, 48, __pyx_L1_error)
+              }
+            }
+            #endif
+
+            /* "c_oriented_histograms.pyx":49
+ *                         assert(0 <= cur_bin and cur_bin < n_orientations)
+ *                         assert(0 <= prv_bin and prv_bin < n_orientations)
  *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_prv_center * 1.0 / bin_width) * cell_mag             # <<<<<<<<<<<<<<
  *                         orientation_histogram[idx_Y, idx_X, prv_bin] += (-dist_cur_center * 1.0 / bin_width) * cell_mag
  */
             __pyx_t_2 = (__pyx_v_dist_prv_center * 1.0);
             if (unlikely(__pyx_v_bin_width == 0)) {
               PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-              __PYX_ERR(0, 42, __pyx_L1_error)
+              __PYX_ERR(0, 49, __pyx_L1_error)
             }
-            __pyx_t_22 = __pyx_v_idx_Y;
-            __pyx_t_23 = __pyx_v_idx_X;
-            __pyx_t_24 = __pyx_v_cur_bin;
-            __pyx_t_12 = -1;
+            __pyx_t_21 = __pyx_v_idx_Y;
+            __pyx_t_22 = __pyx_v_idx_X;
+            __pyx_t_23 = __pyx_v_cur_bin;
+            __pyx_t_3 = -1;
+            if (__pyx_t_21 < 0) {
+              __pyx_t_21 += __pyx_pybuffernd_orientation_histogram.diminfo[0].shape;
+              if (unlikely(__pyx_t_21 < 0)) __pyx_t_3 = 0;
+            } else if (unlikely(__pyx_t_21 >= __pyx_pybuffernd_orientation_histogram.diminfo[0].shape)) __pyx_t_3 = 0;
             if (__pyx_t_22 < 0) {
-              __pyx_t_22 += __pyx_pybuffernd_orientation_histogram.diminfo[0].shape;
-              if (unlikely(__pyx_t_22 < 0)) __pyx_t_12 = 0;
-            } else if (unlikely(__pyx_t_22 >= __pyx_pybuffernd_orientation_histogram.diminfo[0].shape)) __pyx_t_12 = 0;
+              __pyx_t_22 += __pyx_pybuffernd_orientation_histogram.diminfo[1].shape;
+              if (unlikely(__pyx_t_22 < 0)) __pyx_t_3 = 1;
+            } else if (unlikely(__pyx_t_22 >= __pyx_pybuffernd_orientation_histogram.diminfo[1].shape)) __pyx_t_3 = 1;
             if (__pyx_t_23 < 0) {
-              __pyx_t_23 += __pyx_pybuffernd_orientation_histogram.diminfo[1].shape;
-              if (unlikely(__pyx_t_23 < 0)) __pyx_t_12 = 1;
-            } else if (unlikely(__pyx_t_23 >= __pyx_pybuffernd_orientation_histogram.diminfo[1].shape)) __pyx_t_12 = 1;
-            if (__pyx_t_24 < 0) {
-              __pyx_t_24 += __pyx_pybuffernd_orientation_histogram.diminfo[2].shape;
-              if (unlikely(__pyx_t_24 < 0)) __pyx_t_12 = 2;
-            } else if (unlikely(__pyx_t_24 >= __pyx_pybuffernd_orientation_histogram.diminfo[2].shape)) __pyx_t_12 = 2;
-            if (unlikely(__pyx_t_12 != -1)) {
-              __Pyx_RaiseBufferIndexError(__pyx_t_12);
-              __PYX_ERR(0, 42, __pyx_L1_error)
+              __pyx_t_23 += __pyx_pybuffernd_orientation_histogram.diminfo[2].shape;
+              if (unlikely(__pyx_t_23 < 0)) __pyx_t_3 = 2;
+            } else if (unlikely(__pyx_t_23 >= __pyx_pybuffernd_orientation_histogram.diminfo[2].shape)) __pyx_t_3 = 2;
+            if (unlikely(__pyx_t_3 != -1)) {
+              __Pyx_RaiseBufferIndexError(__pyx_t_3);
+              __PYX_ERR(0, 49, __pyx_L1_error)
             }
-            *__Pyx_BufPtrStrided3d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_orientation_histogram.rcbuffer->pybuffer.buf, __pyx_t_22, __pyx_pybuffernd_orientation_histogram.diminfo[0].strides, __pyx_t_23, __pyx_pybuffernd_orientation_histogram.diminfo[1].strides, __pyx_t_24, __pyx_pybuffernd_orientation_histogram.diminfo[2].strides) += ((__pyx_t_2 / __pyx_v_bin_width) * __pyx_v_cell_mag);
+            *__Pyx_BufPtrStrided3d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_orientation_histogram.rcbuffer->pybuffer.buf, __pyx_t_21, __pyx_pybuffernd_orientation_histogram.diminfo[0].strides, __pyx_t_22, __pyx_pybuffernd_orientation_histogram.diminfo[1].strides, __pyx_t_23, __pyx_pybuffernd_orientation_histogram.diminfo[2].strides) += ((__pyx_t_2 / __pyx_v_bin_width) * __pyx_v_cell_mag);
 
-            /* "c_oriented_histograms.pyx":43
- *                             prv_bin = n_orientations - 1
+            /* "c_oriented_histograms.pyx":50
+ *                         assert(0 <= prv_bin and prv_bin < n_orientations)
  *                         orientation_histogram[idx_Y, idx_X, cur_bin] += (dist_prv_center * 1.0 / bin_width) * cell_mag
  *                         orientation_histogram[idx_Y, idx_X, prv_bin] += (-dist_cur_center * 1.0 / bin_width) * cell_mag             # <<<<<<<<<<<<<<
  */
             __pyx_t_2 = ((-__pyx_v_dist_cur_center) * 1.0);
             if (unlikely(__pyx_v_bin_width == 0)) {
               PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-              __PYX_ERR(0, 43, __pyx_L1_error)
+              __PYX_ERR(0, 50, __pyx_L1_error)
             }
-            __pyx_t_25 = __pyx_v_idx_Y;
-            __pyx_t_26 = __pyx_v_idx_X;
-            __pyx_t_27 = __pyx_v_prv_bin;
-            __pyx_t_12 = -1;
+            __pyx_t_24 = __pyx_v_idx_Y;
+            __pyx_t_25 = __pyx_v_idx_X;
+            __pyx_t_26 = __pyx_v_prv_bin;
+            __pyx_t_3 = -1;
+            if (__pyx_t_24 < 0) {
+              __pyx_t_24 += __pyx_pybuffernd_orientation_histogram.diminfo[0].shape;
+              if (unlikely(__pyx_t_24 < 0)) __pyx_t_3 = 0;
+            } else if (unlikely(__pyx_t_24 >= __pyx_pybuffernd_orientation_histogram.diminfo[0].shape)) __pyx_t_3 = 0;
             if (__pyx_t_25 < 0) {
-              __pyx_t_25 += __pyx_pybuffernd_orientation_histogram.diminfo[0].shape;
-              if (unlikely(__pyx_t_25 < 0)) __pyx_t_12 = 0;
-            } else if (unlikely(__pyx_t_25 >= __pyx_pybuffernd_orientation_histogram.diminfo[0].shape)) __pyx_t_12 = 0;
+              __pyx_t_25 += __pyx_pybuffernd_orientation_histogram.diminfo[1].shape;
+              if (unlikely(__pyx_t_25 < 0)) __pyx_t_3 = 1;
+            } else if (unlikely(__pyx_t_25 >= __pyx_pybuffernd_orientation_histogram.diminfo[1].shape)) __pyx_t_3 = 1;
             if (__pyx_t_26 < 0) {
-              __pyx_t_26 += __pyx_pybuffernd_orientation_histogram.diminfo[1].shape;
-              if (unlikely(__pyx_t_26 < 0)) __pyx_t_12 = 1;
-            } else if (unlikely(__pyx_t_26 >= __pyx_pybuffernd_orientation_histogram.diminfo[1].shape)) __pyx_t_12 = 1;
-            if (__pyx_t_27 < 0) {
-              __pyx_t_27 += __pyx_pybuffernd_orientation_histogram.diminfo[2].shape;
-              if (unlikely(__pyx_t_27 < 0)) __pyx_t_12 = 2;
-            } else if (unlikely(__pyx_t_27 >= __pyx_pybuffernd_orientation_histogram.diminfo[2].shape)) __pyx_t_12 = 2;
-            if (unlikely(__pyx_t_12 != -1)) {
-              __Pyx_RaiseBufferIndexError(__pyx_t_12);
-              __PYX_ERR(0, 43, __pyx_L1_error)
+              __pyx_t_26 += __pyx_pybuffernd_orientation_histogram.diminfo[2].shape;
+              if (unlikely(__pyx_t_26 < 0)) __pyx_t_3 = 2;
+            } else if (unlikely(__pyx_t_26 >= __pyx_pybuffernd_orientation_histogram.diminfo[2].shape)) __pyx_t_3 = 2;
+            if (unlikely(__pyx_t_3 != -1)) {
+              __Pyx_RaiseBufferIndexError(__pyx_t_3);
+              __PYX_ERR(0, 50, __pyx_L1_error)
             }
-            *__Pyx_BufPtrStrided3d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_orientation_histogram.rcbuffer->pybuffer.buf, __pyx_t_25, __pyx_pybuffernd_orientation_histogram.diminfo[0].strides, __pyx_t_26, __pyx_pybuffernd_orientation_histogram.diminfo[1].strides, __pyx_t_27, __pyx_pybuffernd_orientation_histogram.diminfo[2].strides) += ((__pyx_t_2 / __pyx_v_bin_width) * __pyx_v_cell_mag);
+            *__Pyx_BufPtrStrided3d(__pyx_t_5numpy_double_t *, __pyx_pybuffernd_orientation_histogram.rcbuffer->pybuffer.buf, __pyx_t_24, __pyx_pybuffernd_orientation_histogram.diminfo[0].strides, __pyx_t_25, __pyx_pybuffernd_orientation_histogram.diminfo[1].strides, __pyx_t_26, __pyx_pybuffernd_orientation_histogram.diminfo[2].strides) += ((__pyx_t_2 / __pyx_v_bin_width) * __pyx_v_cell_mag);
           }
           __pyx_L12:;
         }
@@ -2009,7 +2106,7 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
  * from libc.math cimport floor
  * def calculate_histograms (np.ndarray[np.double_t, ndim=2] mag,             # <<<<<<<<<<<<<<
  *                           np.ndarray[np.double_t, ndim=2] ang,
- *                           cx, cy, sx, sy, n_cellsx, n_cellsy, n_orientations,
+ *                           cx, cy, sx, sy, n_cellsx, n_cellsy, n_orientations, ovx, ovy,
  */
 
   /* function exit code */
@@ -2017,7 +2114,7 @@ static PyObject *__pyx_pf_21c_oriented_histograms_calculate_histograms(CYTHON_UN
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
   { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
     __Pyx_PyThreadState_declare
     __Pyx_PyThreadState_assign
@@ -4201,6 +4298,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_dist_cur_center, __pyx_k_dist_cur_center, sizeof(__pyx_k_dist_cur_center), 0, 0, 1, 1},
   {&__pyx_n_s_dist_nxt_center, __pyx_k_dist_nxt_center, sizeof(__pyx_k_dist_nxt_center), 0, 0, 1, 1},
   {&__pyx_n_s_dist_prv_center, __pyx_k_dist_prv_center, sizeof(__pyx_k_dist_prv_center), 0, 0, 1, 1},
+  {&__pyx_n_s_from_x, __pyx_k_from_x, sizeof(__pyx_k_from_x), 0, 0, 1, 1},
+  {&__pyx_n_s_from_y, __pyx_k_from_y, sizeof(__pyx_k_from_y), 0, 0, 1, 1},
+  {&__pyx_n_s_gap_cx, __pyx_k_gap_cx, sizeof(__pyx_k_gap_cx), 0, 0, 1, 1},
+  {&__pyx_n_s_gap_cy, __pyx_k_gap_cy, sizeof(__pyx_k_gap_cy), 0, 0, 1, 1},
   {&__pyx_kp_s_home_berthin_Documents_git_repo, __pyx_k_home_berthin_Documents_git_repo, sizeof(__pyx_k_home_berthin_Documents_git_repo), 0, 0, 1, 0},
   {&__pyx_n_s_idx_X, __pyx_k_idx_X, sizeof(__pyx_k_idx_X), 0, 0, 1, 1},
   {&__pyx_n_s_idx_Y, __pyx_k_idx_Y, sizeof(__pyx_k_idx_Y), 0, 0, 1, 1},
@@ -4213,13 +4314,13 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_u_ndarray_is_not_Fortran_contiguou, __pyx_k_ndarray_is_not_Fortran_contiguou, sizeof(__pyx_k_ndarray_is_not_Fortran_contiguou), 0, 1, 0, 0},
   {&__pyx_n_s_nxt_bin, __pyx_k_nxt_bin, sizeof(__pyx_k_nxt_bin), 0, 0, 1, 1},
   {&__pyx_n_s_orientation_histogram, __pyx_k_orientation_histogram, sizeof(__pyx_k_orientation_histogram), 0, 0, 1, 1},
+  {&__pyx_n_s_ovx, __pyx_k_ovx, sizeof(__pyx_k_ovx), 0, 0, 1, 1},
+  {&__pyx_n_s_ovy, __pyx_k_ovy, sizeof(__pyx_k_ovy), 0, 0, 1, 1},
   {&__pyx_n_s_prv_bin, __pyx_k_prv_bin, sizeof(__pyx_k_prv_bin), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_sx, __pyx_k_sx, sizeof(__pyx_k_sx), 0, 0, 1, 1},
   {&__pyx_n_s_sy, __pyx_k_sy, sizeof(__pyx_k_sy), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-  {&__pyx_n_s_to_x, __pyx_k_to_x, sizeof(__pyx_k_to_x), 0, 0, 1, 1},
-  {&__pyx_n_s_to_y, __pyx_k_to_y, sizeof(__pyx_k_to_y), 0, 0, 1, 1},
   {&__pyx_kp_u_unknown_dtype_code_in_numpy_pxd, __pyx_k_unknown_dtype_code_in_numpy_pxd, sizeof(__pyx_k_unknown_dtype_code_in_numpy_pxd), 0, 1, 0, 0},
   {&__pyx_n_s_x, __pyx_k_x, sizeof(__pyx_k_x), 0, 0, 1, 1},
   {&__pyx_n_s_y, __pyx_k_y, sizeof(__pyx_k_y), 0, 0, 1, 1},
@@ -4309,12 +4410,12 @@ static int __Pyx_InitCachedConstants(void) {
  * from libc.math cimport floor
  * def calculate_histograms (np.ndarray[np.double_t, ndim=2] mag,             # <<<<<<<<<<<<<<
  *                           np.ndarray[np.double_t, ndim=2] ang,
- *                           cx, cy, sx, sy, n_cellsx, n_cellsy, n_orientations,
+ *                           cx, cy, sx, sy, n_cellsx, n_cellsy, n_orientations, ovx, ovy,
  */
-  __pyx_tuple__7 = PyTuple_Pack(25, __pyx_n_s_mag, __pyx_n_s_ang, __pyx_n_s_cx, __pyx_n_s_cy, __pyx_n_s_sx, __pyx_n_s_sy, __pyx_n_s_n_cellsx, __pyx_n_s_n_cellsy, __pyx_n_s_n_orientations, __pyx_n_s_orientation_histogram, __pyx_n_s_cell_ang, __pyx_n_s_cell_mag, __pyx_n_s_dist_cur_center, __pyx_n_s_dist_prv_center, __pyx_n_s_dist_nxt_center, __pyx_n_s_bin_width, __pyx_n_s_cur_bin, __pyx_n_s_prv_bin, __pyx_n_s_nxt_bin, __pyx_n_s_idx_X, __pyx_n_s_idx_Y, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_to_x, __pyx_n_s_to_y); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(29, __pyx_n_s_mag, __pyx_n_s_ang, __pyx_n_s_cx, __pyx_n_s_cy, __pyx_n_s_sx, __pyx_n_s_sy, __pyx_n_s_n_cellsx, __pyx_n_s_n_cellsy, __pyx_n_s_n_orientations, __pyx_n_s_ovx, __pyx_n_s_ovy, __pyx_n_s_orientation_histogram, __pyx_n_s_cell_ang, __pyx_n_s_cell_mag, __pyx_n_s_dist_cur_center, __pyx_n_s_dist_prv_center, __pyx_n_s_dist_nxt_center, __pyx_n_s_bin_width, __pyx_n_s_cur_bin, __pyx_n_s_prv_bin, __pyx_n_s_nxt_bin, __pyx_n_s_idx_X, __pyx_n_s_idx_Y, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_from_x, __pyx_n_s_from_y, __pyx_n_s_gap_cx, __pyx_n_s_gap_cy); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(10, 0, 25, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_berthin_Documents_git_repo, __pyx_n_s_calculate_histograms, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(12, 0, 29, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_berthin_Documents_git_repo, __pyx_n_s_calculate_histograms, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -4440,7 +4541,7 @@ PyMODINIT_FUNC PyInit_c_oriented_histograms(void)
  * from libc.math cimport floor
  * def calculate_histograms (np.ndarray[np.double_t, ndim=2] mag,             # <<<<<<<<<<<<<<
  *                           np.ndarray[np.double_t, ndim=2] ang,
- *                           cx, cy, sx, sy, n_cellsx, n_cellsy, n_orientations,
+ *                           cx, cy, sx, sy, n_cellsx, n_cellsy, n_orientations, ovx, ovy,
  */
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_21c_oriented_histograms_1calculate_histograms, NULL, __pyx_n_s_c_oriented_histograms); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
